@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: bash -c "cd server && adonis serve --dev" # yarn serve # <- Important!
+    volumes:
+      - .:/usr/src/vue-adonis-todo
+    expose:
+      - "3333"
+    ports:
+      - "3333:3333"
+
+# Notify container when file changes on windows
+# https://github.com/ITISFoundation/osparc-simcore/issues/93
+# pip install docker-windows-volume-watcher
+# docker-volume-watcher
+# 
+# AdonisJs in Docker
+# In .env set HOST=0.0.0.0
+# Look at: https://github.com/stephenafamo/adonisjs-docker
