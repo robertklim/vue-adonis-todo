@@ -1,15 +1,38 @@
 version: '3'
 
 services:
-  web:
-    build: .
-    command: bash -c "cd server && adonis serve --dev" # yarn serve # <- Important!
-    volumes:
-      - .:/usr/src/vue-adonis-todo
+  # web:
+  #   build: .
+  #   command: bash -c "cd server && adonis serve --dev && cd ../client && yarn serve"
+  #   volumes:
+  #     - .:/usr/src/vue-adonis-todo
+  #   expose:
+  #     - "3333"
+  #     - "8080"
+  #   ports:
+  #     - "3333:3333"
+  #     - "8080:8080"
+  server:
+    build: ./server
+    command: bash -c "adonis serve --dev"
     expose:
       - "3333"
     ports:
       - "3333:3333"
+    volumes:
+      - ./server:/usr/src/vue-adonis-todo/server
+    links:
+      - client
+  client:
+    build: ./client
+    command: bash -c "yarn serve"
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client:/usr/src/vue-adonis-todo/client
+
 
 # Notify container when file changes on windows
 # https://github.com/ITISFoundation/osparc-simcore/issues/93
