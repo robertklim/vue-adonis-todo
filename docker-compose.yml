@@ -23,6 +23,8 @@ services:
       - ./server:/usr/src/vue-adonis-todo/server
     links:
       - client
+    networks:
+      - backend
   client:
     build: ./client
     command: bash -c "yarn serve"
@@ -32,6 +34,11 @@ services:
       - "8080:8080"
     volumes:
       - ./client:/usr/src/vue-adonis-todo/client
+    networks:
+      - backend
+networks:
+  backend:
+    driver: "bridge"
 
 
 # Notify container when file changes on windows
