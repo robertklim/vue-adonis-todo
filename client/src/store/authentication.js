@@ -25,6 +25,11 @@ export default {
         });
     },
   },
+  getters: {
+    isLoggedIn(state) {
+      return !!state.token;
+    },
+  },
   mutations: {
     setRegisterError(state, error) {
       state.registerError = error;
