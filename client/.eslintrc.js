@@ -13,7 +13,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'arrow-body-style': 'off',
     'consistent-return': 'off',
-    'linebreak-style': [2, "windows"],
+    'linebreak-style': ["error", "unix"],
   },
   parserOptions: {
     parser: 'babel-eslint'
