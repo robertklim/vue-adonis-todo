@@ -13,9 +13,15 @@ export default {
             title: state.newProjectName,
             })
                 .then(({ data }) => {
-                commit('appendProject', data);
-                commit('setNewProjectName', null);
-            });
+                    commit('appendProject', data);
+                    commit('setNewProjectName', null);
+                });
+        },
+        fetchProjects({ commit }) {
+            return HTTP().get('/projects')
+                    .then(({ data }) => {
+                        commit('setProjects', data);
+                    });
         },
     },
     getters: {
@@ -26,6 +32,9 @@ export default {
         },
         appendProject(state, project) {
             state.projects.push(project);
+        },
+        setProjects(state, projects) {
+            state.projects = projects;
         },
     },
 };

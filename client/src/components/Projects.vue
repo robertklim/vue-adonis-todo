@@ -32,6 +32,9 @@
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex';
 export default {
+    mounted() {
+        this.fetchProjects();
+    },
     computed: {
         ...mapState('projects', [
             'newProjectName',
@@ -44,6 +47,7 @@ export default {
         ]),
         ...mapActions('projects', [
             'createProject',
+            'fetchProjects',
         ]),
     },
 };
