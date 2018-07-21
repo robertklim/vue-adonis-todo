@@ -18,6 +18,12 @@ export default {
                     commit('setNewProjectName', null);
                 });
         },
+        deleteProject({ commit }, project) {
+            return HTTP().delete(`/projects/${project.id}`)
+                .then(() => {
+                    commit('removeProject', project);
+                });
+        },
         fetchProjects({ commit }) {
             return HTTP().get('/projects')
                 .then(({ data }) => {
@@ -51,6 +57,9 @@ export default {
         },
         unsetEditMode(state, project) {
             Vue.set(project, 'isEditMode', false);
+        },
+        removeProject(state, project) {
+            state.projects.splice(state.projects.indexOf(project), 1);
         },
     },
 };

@@ -34,6 +34,10 @@
                         @click="saveProject(project)">
                         check
                     </v-icon>
+                    <v-icon
+                        @click="deleteProject(project)">
+                        delete
+                    </v-icon>
                 </v-flex>
             </v-layout>
         </div>
@@ -83,6 +87,7 @@ export default {
             'createProject',
             'fetchProjects',
             'saveProject',
+            'deleteProject',
         ]),
     },
 };
