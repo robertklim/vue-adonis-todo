@@ -47,6 +47,7 @@
                     placeholder="Project name..."
                     @input="setNewProjectName"
                     :value="newProjectName"
+                    @keyup.enter="createProject"
                 ></v-text-field>
             </v-flex>
             <v-flex xs4>
