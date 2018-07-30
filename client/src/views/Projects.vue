@@ -6,20 +6,21 @@
       </v-flex>
 
       <v-flex xs8 class="pl-4">
-        <Panel title="Tasks">
-        </Panel>
+        <Tasks></Tasks>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import Projects from '@/components/Projects.vue';
-import router from '../router';
 import { mapGetters } from 'vuex';
+import Projects from '@/components/Projects.vue';
+import Tasks from '@/components/Tasks.vue';
+import router from '../router';
 export default {
     components: {
         Projects,
+        Tasks,
     },
     mounted() {
       if (!this.isLoggedIn) {
