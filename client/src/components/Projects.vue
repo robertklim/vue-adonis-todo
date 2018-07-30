@@ -41,35 +41,24 @@
                 </v-flex>
             </v-layout>
         </div>
-        <v-layout row wrap class="mt-4">
-            <v-flex xs8>
-                <v-text-field
-                    placeholder="Project name..."
-                    @input="setNewProjectName"
-                    :value="newProjectName"
-                    @keyup.enter="createProject"
-                ></v-text-field>
-            </v-flex>
-            <v-flex xs4>
-                <v-btn
-                    @click="createProject"
-                    dark
-                    class="mr-2"
-                    color="green"
-                >
-                    <v-icon class="mr-2">add_circle</v-icon>
-                    Create
-                </v-btn>
-            </v-flex>
-        </v-layout>
+        <CreateRecord 
+            placeholder="Project name..."
+            @onInput="setNewProjectName"
+            :value="newProjectName"
+            @create="createProject"
+        />
     </Panel>
 </template>
 
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex';
+import CreateRecord from '@/components/CreateRecord.vue';
 export default {
     mounted() {
         this.fetchProjects();
+    },
+    components: {
+        CreateRecord,
     },
     computed: {
         ...mapState('projects', [
