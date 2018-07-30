@@ -5,7 +5,17 @@
             v-for="task in tasks"
             :key="task.id"    
         >
-            {{ task.description }}
+            <EditableRecord 
+                :isEditMode="task.isEditMode"
+                :title="task.description"
+                @onInput="setTaskDescription({
+                    task,
+                    description: $event,
+                })"
+                @onEdit="setEditMode(task)"
+                @onSave="saveTask(task)"
+                @onDelete="deleteTask(task)"
+            />
         </div>
 
         <CreateRecord 
@@ -20,9 +30,11 @@
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex';
 import CreateRecord from '@/components/CreateRecord.vue';
+import EditableRecord from '@/components/EditableRecord.vue';
 export default {
     components: {
         CreateRecord,
+        EditableRecord,
     },
     computed: {
         ...mapState('tasks', [
@@ -33,9 +45,14 @@ export default {
     methods: {
         ...mapActions('tasks', [
             'createTask',
+            'deleteTask',
+            'saveTask',
         ]),
         ...mapMutations('tasks', [
             'setNewTaskName',
+            'setTaskDescription',
+            'setEditMode',
+            'unsetEditMode',
         ]),
     },
 };
